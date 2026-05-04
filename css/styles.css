@@ -301,6 +301,101 @@ em { font-style: italic; color: var(--gold-bright); }
   margin-top: 8px;
   line-height: 1.5;
 }
+/* ---------- Hero music-preview pill ---------- */
+.hero__preview {
+  margin-top: 36px;
+  display: flex;
+  justify-content: center;
+}
+
+.preview-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px 14px 18px;
+  background: rgba(0, 0, 0, 0.30);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  color: var(--bone);
+  font-family: var(--sans);
+  cursor: pointer;
+  transition:
+    background 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    color 0.25s var(--ease),
+    transform 0.25s var(--ease);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.preview-pill:hover {
+  background: rgba(201, 165, 90, 0.12);
+  color: var(--gold-bright);
+  transform: translateY(-1px);
+}
+.preview-pill:active { transform: translateY(0); }
+
+.preview-pill__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--ink);
+  flex-shrink: 0;
+  transition: background 0.25s var(--ease);
+}
+.preview-pill:hover .preview-pill__icon { background: var(--gold-bright); }
+
+.preview-pill__icon-pause { display: none; }
+.preview-pill[data-state="playing"] .preview-pill__icon-play { display: none; }
+.preview-pill[data-state="playing"] .preview-pill__icon-pause { display: block; }
+
+/* While playing the icon pulses gently — borrowed from the chord
+   stave bar in the synopsis section to suggest "this is sounding". */
+.preview-pill[data-state="playing"] .preview-pill__icon {
+  animation: previewPulse 1.6s var(--ease) infinite;
+}
+@keyframes previewPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 165, 90, 0.55); }
+  50%      { box-shadow: 0 0 0 10px rgba(201, 165, 90, 0); }
+}
+
+.preview-pill__label {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.preview-pill__hint {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bone-muted);
+  border-left: 1px solid rgba(201, 165, 90, 0.35);
+  padding-left: 10px;
+  line-height: 1;
+}
+
+@media (max-width: 600px) {
+  .hero__preview { margin-top: 28px; }
+  .preview-pill { padding: 12px 18px 12px 14px; }
+  .preview-pill__label { font-size: 15px; }
+  .preview-pill__hint { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preview-pill,
+  .preview-pill[data-state="playing"] .preview-pill__icon {
+    transition: none;
+    animation: none;
+  }
+}
+
 .hero__cue {
   position: absolute;
   bottom: 32px; left: 50%;

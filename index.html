@@ -88,6 +88,37 @@
           <span class="rule__diamond">◇</span>
         </div>
         <p class="hero__tag">A chord that wakes the world.<br/>A world not ready to be awake.</p>
+
+        <!-- 19-second looping music preview. Loads on demand (no
+             autoplay — would be muted by browser policy anyway) and
+             loops with a built-in 0.5 s fade in / out so each cycle
+             breathes rather than clicks at the boundary. -->
+        <div class="hero__preview">
+          <audio id="hero-preview-audio"
+                 src="assets/harmoni-preview.mp3"
+                 preload="metadata"
+                 loop></audio>
+
+          <button class="preview-pill" type="button"
+                  data-state="idle"
+                  aria-label="Play music preview">
+            <span class="preview-pill__icon" aria-hidden="true">
+              <svg class="preview-pill__icon-play"
+                   viewBox="0 0 24 24" width="16" height="16"
+                   fill="currentColor">
+                <path d="M8 5 V19 L19 12 Z"/>
+              </svg>
+              <svg class="preview-pill__icon-pause"
+                   viewBox="0 0 24 24" width="16" height="16"
+                   fill="currentColor">
+                <rect x="7" y="5" width="3.5" height="14" rx="1"/>
+                <rect x="13.5" y="5" width="3.5" height="14" rx="1"/>
+              </svg>
+            </span>
+            <span class="preview-pill__label">Hear the Frequency</span>
+            <span class="preview-pill__hint">19s · loops</span>
+          </button>
+        </div>
       </div>
       <a class="hero__cue" href="#logline" aria-label="Scroll to begin">
         <span>Begin</span>
